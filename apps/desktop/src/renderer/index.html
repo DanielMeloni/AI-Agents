@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BLACKSTAR Desktop</title>
   <link rel="stylesheet" href="styles.css" />
@@ -10,18 +10,12 @@
 <body>
   <main id="app">
     <button id="mascot-btn" type="button" aria-expanded="false" aria-controls="panel" aria-label="BLACKSTAR: apri la conversazione">
-      <svg id="mascot" data-state="idle" viewBox="0 0 200 200" role="img" aria-hidden="true" focusable="false">
-        <circle class="glow" cx="100" cy="100" r="92" />
-        <circle class="orbit" cx="100" cy="100" r="94" />
-        <g class="body">
-          <polygon class="star" points="100.0,16.0 121.2,70.9 179.9,74.0 134.2,111.1 149.4,168.0 100.0,136.0 50.6,168.0 65.8,111.1 20.1,74.0 78.8,70.9" />
-          <polygon class="star-inner" points="100.0,16.0 121.2,70.9 179.9,74.0 134.2,111.1 149.4,168.0 100.0,136.0 50.6,168.0 65.8,111.1 20.1,74.0 78.8,70.9" />
-          <circle class="eye-socket" cx="100" cy="102" r="22" />
-          <circle class="iris" cx="100" cy="102" r="12" />
-          <circle class="pupil" cx="100" cy="102" r="5" />
-          <circle class="glint" cx="104" cy="98" r="2" />
-        </g>
-      </svg>
+      <span id="mascot" class="mascot" data-state="idle" aria-hidden="true">
+        <span class="ring ring-orbit"></span>
+        <span class="ring ring-wave"></span>
+        <span class="ring ring-wave ring-wave-2"></span>
+        <img class="mascot-img" src="assets/blackstar.webp" alt="" width="640" height="640" draggable="false" />
+      </span>
       <span id="mascot-label" class="mascot-label">BLACKSTAR</span>
     </button>
 

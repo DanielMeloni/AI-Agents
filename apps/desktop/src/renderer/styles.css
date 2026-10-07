@@ -23,52 +23,54 @@ body {
 /* Mascotte */
 #mascot-btn {
   background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
-  display: flex; flex-direction: column; align-items: center; gap: 4px; border-radius: 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; border-radius: 24px;
 }
 #mascot-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-#mascot { width: 168px; height: 168px; overflow: visible; --accent: #b9c4ff; --accent-glow: rgba(140, 160, 255, 0.35); }
 .mascot-label { letter-spacing: 0.4em; font-size: 11px; color: var(--muted); padding-left: 0.4em; }
 
-#mascot .glow { fill: var(--accent-glow); filter: blur(14px); opacity: 0.55; transform-origin: 100px 100px; }
-#mascot .orbit { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 2 10; opacity: 0; transform-origin: 100px 100px; }
-#mascot .body { transform-origin: 100px 100px; }
-#mascot .star { fill: #10131c; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
-#mascot .star-inner { fill: none; stroke: var(--accent); stroke-width: 0.8; opacity: 0.35; transform: scale(0.82); transform-origin: 100px 100px; }
-#mascot .eye-socket { fill: #07080c; stroke: var(--accent); stroke-width: 1.2; }
-#mascot .iris { fill: var(--accent); transform-origin: 100px 102px; }
-#mascot .pupil { fill: #07080c; transform-origin: 100px 102px; }
-#mascot .glint { fill: #fff; opacity: 0.8; }
+.mascot { position: relative; display: block; width: 176px; height: 176px; --glow: rgba(60, 160, 255, 0.55); }
+.mascot-img {
+  position: relative; display: block; width: 100%; height: 100%; user-select: none; pointer-events: none;
+  filter: drop-shadow(0 0 14px var(--glow));
+  transition: filter 0.4s ease;
+  transform-origin: 50% 50%;
+}
+.ring { position: absolute; inset: 6%; border-radius: 50%; pointer-events: none; opacity: 0; }
+.ring-orbit { border: 1.5px dashed rgba(120, 200, 255, 0.8); inset: -2%; }
+.ring-wave { border: 2px solid rgba(90, 190, 255, 0.7); }
 
-#mascot[data-state="idle"] .glow { animation: breathe 4.5s ease-in-out infinite; }
-#mascot[data-state="idle"] .body { animation: float 6s ease-in-out infinite; }
+/* idle: respiro lento */
+.mascot[data-state="idle"] .mascot-img { animation: idle-float 6s ease-in-out infinite; }
 
-#mascot[data-state="listening"] { --accent: #9fe3ff; --accent-glow: rgba(120, 210, 255, 0.4); }
-#mascot[data-state="listening"] .iris { transform: scale(1.25); }
-#mascot[data-state="listening"] .pupil { transform: scale(1.4); }
-#mascot[data-state="listening"] .glow { animation: breathe 2.2s ease-in-out infinite; }
+/* listening: più luminosa e leggermente ingrandita */
+.mascot[data-state="listening"] { --glow: rgba(110, 220, 255, 0.8); }
+.mascot[data-state="listening"] .mascot-img { transform: scale(1.06); filter: drop-shadow(0 0 22px var(--glow)) brightness(1.12); }
 
-#mascot[data-state="working"] { --accent: #c7b6ff; --accent-glow: rgba(170, 140, 255, 0.45); }
-#mascot[data-state="working"] .orbit { opacity: 0.8; animation: spin 3s linear infinite; }
-#mascot[data-state="working"] .star-inner { animation: spin 6s linear infinite reverse; }
-#mascot[data-state="working"] .pupil { animation: blink 1.4s ease-in-out infinite; }
+/* working: anello orbitale che gira, pulsazione lenta */
+.mascot[data-state="working"] { --glow: rgba(150, 140, 255, 0.75); }
+.mascot[data-state="working"] .mascot-img { animation: work-pulse 1.6s ease-in-out infinite; filter: drop-shadow(0 0 20px var(--glow)) hue-rotate(18deg); }
+.mascot[data-state="working"] .ring-orbit { opacity: 1; animation: spin 3.2s linear infinite; }
 
-#mascot[data-state="responding"] { --accent: #aef0d0; --accent-glow: rgba(110, 230, 170, 0.4); }
-#mascot[data-state="responding"] .body { animation: pop 0.6s ease-out; }
-#mascot[data-state="responding"] .glow { animation: breathe 1.2s ease-in-out infinite; }
+/* responding ("parla"): pulsazione ritmica + onde sonore che si espandono */
+.mascot[data-state="responding"] { --glow: rgba(100, 240, 230, 0.85); }
+.mascot[data-state="responding"] .mascot-img { animation: speak 0.62s ease-in-out infinite; filter: drop-shadow(0 0 24px var(--glow)) brightness(1.1); }
+.mascot[data-state="responding"] .ring-wave { animation: wave 1.6s ease-out infinite; }
+.mascot[data-state="responding"] .ring-wave-2 { animation-delay: 0.8s; }
 
-#mascot[data-state="blocked"] { --accent: #ff9a8a; --accent-glow: rgba(255, 110, 90, 0.45); }
-#mascot[data-state="blocked"] .body { animation: shake 0.5s ease-in-out 1; }
-#mascot[data-state="blocked"] .iris { transform: scaleY(0.45); }
+/* blocked: tinta rossa e scossa */
+.mascot[data-state="blocked"] { --glow: rgba(255, 90, 70, 0.7); }
+.mascot[data-state="blocked"] .mascot-img { filter: drop-shadow(0 0 20px var(--glow)) hue-rotate(150deg) saturate(1.6); animation: shake 0.5s ease-in-out 1; }
 
-@keyframes breathe { 0%, 100% { opacity: 0.35; transform: scale(0.95); } 50% { opacity: 0.8; transform: scale(1.05); } }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes idle-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-5px) scale(1.015); } }
+@keyframes work-pulse { 0%, 100% { transform: scale(0.97); } 50% { transform: scale(1.03); } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes blink { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.4); } }
-@keyframes pop { 0% { transform: scale(0.94); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+@keyframes speak { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.055); } 55% { transform: scale(1.015); } 80% { transform: scale(1.04); } }
+@keyframes wave { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.45); opacity: 0; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
 
 @media (prefers-reduced-motion: reduce) {
-  #mascot *, #mascot { animation: none !important; }
+  .mascot *, .mascot { animation: none !important; transition: none !important; }
+  .mascot[data-state="responding"] .mascot-img { transform: scale(1.05); }
 }
 
 /* Pannello */

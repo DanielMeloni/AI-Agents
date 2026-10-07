@@ -18,3 +18,4 @@ await Promise.all([
 ]);
 
 for (const f of ["index.html", "styles.css"]) cpSync(join(root, "src/renderer", f), join(dist, "renderer", f));
+cpSync(join(root, "src/renderer/assets"), join(dist, "renderer/assets"), { recursive: true });

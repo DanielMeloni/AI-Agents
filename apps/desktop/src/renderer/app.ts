@@ -1,9 +1,8 @@
 import type { BlackstarApi, GuardedAction } from "../shared/ipc";
-import { mascotStateForStatus, setMascotState, type MascotState } from "./mascot";
+import { mascotStateForStatus, setMascotState, speakingMs, type MascotState } from "./mascot";
 import { renderError, renderResponse, renderUserMessage } from "./view";
 
 export const DEMO_REQUEST = "Proponi un articolo su Dataform per il mio blog";
-const RESPONDING_MS = 1800;
 
 /** Collega DOM e API esposta dal preload. Nessun accesso a Node, fs o Electron. */
 export function initApp(doc: Document, api: BlackstarApi): void {
@@ -53,7 +52,7 @@ export function initApp(doc: Document, api: BlackstarApi): void {
       const status = response.ok ? response.result.status : "failed";
       const next = mascotStateForStatus(status);
       setState(next);
-      if (next === "responding") timer = setTimeout(() => setState(idleState()), RESPONDING_MS);
+      if (next === "responding") timer = setTimeout(() => setState(idleState()), speakingMs(response.ok ? response.result.summary : ""));
     } catch {
       append(renderError(doc, "Impossibile contattare il runtime locale."));
       setState("blocked");

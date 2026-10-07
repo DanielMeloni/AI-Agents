@@ -11,3 +11,8 @@ export function setMascotState(el: Element, state: MascotState): void {
 export function mascotStateForStatus(status: DapResult["status"]): MascotState {
   return status === "blocked" || status === "failed" ? "blocked" : "responding";
 }
+
+/** Durata dell'animazione "parla": proporzionale alla lunghezza della risposta, limitata. */
+export function speakingMs(summary: string): number {
+  return Math.min(6000, Math.max(1800, summary.length * 35));
+}
