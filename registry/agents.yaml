@@ -1,0 +1,40 @@
+agents:
+  - id: daniel
+    type: global
+    status: active
+    owner: user
+  - id: blackstar
+    type: domain
+    domain: personal_brand
+    status: pilot
+    parent_agent: daniel
+  - id: corporate
+    type: domain
+    domain: corporate
+    status: planned
+    parent_agent: daniel
+  - id: pro
+    type: domain
+    domain: professional
+    status: planned
+    parent_agent: daniel
+  - id: dev
+    type: domain
+    domain: development
+    status: planned
+    parent_agent: daniel
+  - id: rugby
+    type: domain
+    domain: rugby
+    status: planned
+    parent_agent: daniel
+  - id: life
+    type: domain
+    domain: personal
+    status: planned
+    parent_agent: daniel
+  - id: finance
+    type: domain
+    domain: finance
+    status: planned
+    parent_agent: daniel

@@ -1,0 +1,19 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Dependency and build output
+node_modules/
+dist/
+build/
+.cache/
+
+# Local runtime state
+runtime/
+*.log
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+.vscode/

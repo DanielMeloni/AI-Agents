@@ -1,0 +1,14 @@
+project:
+  id: ""
+  name: ""
+  status: candidate # candidate | active | paused | archived
+  domains: []
+  owner_agent: ""
+  collaborator_agents: []
+  objective: ""
+  source_refs: []
+  permissions:
+    read: []
+    write: []
+    execute: []
+  confirmation_required_for: [external_write, publish, delete]

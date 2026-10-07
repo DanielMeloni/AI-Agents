@@ -1,0 +1,14 @@
+project:
+  id: personal-blog
+  name: danielmeloni.com
+  status: candidate
+  domains: [personal_brand, development]
+  owner_agent: blackstar
+  collaborator_agents: [dev]
+  objective: Manage content and supporting digital operations after sources and permissions are mapped.
+  source_refs: []
+  permissions:
+    read: []
+    write: []
+    execute: []
+  confirmation_required_for: [external_write, publish, delete, editorial_plan_change]

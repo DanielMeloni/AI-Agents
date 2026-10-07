@@ -1,0 +1,18 @@
+workflow:
+  id: blackstar-editorial-intake
+  version: "1.0"
+  trigger: editorial_request
+  input:
+    required: [user_request]
+    optional: [project_id, context_refs, target_channel]
+  steps:
+    - classify_request
+    - resolve_project
+    - load_minimum_context
+    - identify_missing_information
+    - produce_dap_result
+  outputs:
+    status: [completed, needs_input, handed_off, blocked]
+    required_fields: [summary, facts, assumptions, actions_required]
+  safeguards:
+    confirmation_required_for: [publish, external_write, editorial_plan_change]

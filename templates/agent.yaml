@@ -1,0 +1,21 @@
+agent:
+  id: ""
+  name: ""
+  version: "1.0"
+  type: domain # global | domain | project | specialist
+  parent_agent: daniel
+  domain: ""
+  description: ""
+  mission: ""
+  responsibilities: []
+  exclusions: []
+  capabilities: []
+  child_agents: []
+  projects: []
+  memory:
+    read_scopes: [domain, project, session]
+    write_scopes: [domain, project]
+    promotion_required: true
+  autonomy: medium # low | medium | high
+  safeguards:
+    require_confirmation_for: [external_write, publish, delete]

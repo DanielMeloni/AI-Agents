@@ -1,0 +1,15 @@
+projects:
+  - id: personal-blog
+    name: danielmeloni.com
+    domains: [personal_brand, development]
+    owner_agent: blackstar
+    collaborator_agents: [dev]
+    status: candidate
+    path: projects/personal-blog
+  - id: brand-os
+    name: Brand OS
+    domains: [personal_brand]
+    owner_agent: blackstar
+    collaborator_agents: []
+    status: candidate
+    path: projects/brand-os

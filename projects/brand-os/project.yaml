@@ -1,0 +1,14 @@
+project:
+  id: brand-os
+  name: Brand OS
+  status: candidate
+  domains: [personal_brand]
+  owner_agent: blackstar
+  collaborator_agents: []
+  objective: Define the reusable brand system, workflows and reference material for personal-brand activity.
+  source_refs: []
+  permissions:
+    read: []
+    write: []
+    execute: []
+  confirmation_required_for: [external_write, publish, delete, brand_guideline_change]
