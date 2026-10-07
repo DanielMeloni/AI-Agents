@@ -7,3 +7,5 @@ Qui vivranno solo componenti riusabili da almeno due agenti:
 - `connectors`: adapter approvati per fonti esterne.
 
 Un componente specifico di BLACKSTAR resta in `agents/blackstar/` finché non dimostra di essere riusabile.
+
+Stato MVP: `contracts` e `runtime` sono implementati (vedi README principale). `connectors` non esiste ancora.

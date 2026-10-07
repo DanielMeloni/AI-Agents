@@ -1,0 +1,11 @@
+{
+  "name": "@daniel-ai-os/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@daniel-ai-os/blackstar": "workspace:*",
+    "@daniel-ai-os/contracts": "workspace:*",
+    "@daniel-ai-os/runtime": "workspace:*"
+  }
+}

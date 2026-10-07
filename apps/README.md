@@ -8,4 +8,4 @@ Possibili applicazioni future:
 - `api`: endpoint per routing e autorizzazioni;
 - `worker`: esecuzioni pianificate e code.
 
-Nessuna applicazione viene creata prima del pilot BLACKSTAR: prima validiamo workflow, dati e confini.
+Stato MVP: esiste solo `cli` (demo locale in dry-run, nessuna logica agent-specifica oltre al wiring). `web`, `api` e `worker` restano da creare dopo la validazione del pilot.
