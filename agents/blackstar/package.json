@@ -1,0 +1,8 @@
+{
+  "name": "@daniel-ai-os/blackstar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@daniel-ai-os/contracts": "workspace:*", "@daniel-ai-os/runtime": "workspace:*" }
+}

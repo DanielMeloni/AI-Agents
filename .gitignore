@@ -10,7 +10,7 @@ build/
 .cache/
 
 # Local runtime state
-runtime/
+/runtime/
 *.log
 
 # IDE and OS files

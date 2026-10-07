@@ -18,3 +18,19 @@ agent:
   autonomy: medium
   safeguards:
     require_confirmation_for: [publish, external_write, editorial_plan_change]
+  routing:
+    keywords:
+      - blog
+      - articol*
+      - post
+      - seo
+      - social
+      - linkedin
+      - newsletter
+      - personal brand
+      - piano editoriale
+      - calendario editoriale
+      - editorial*
+      - contenut*
+      - danielmeloni.com
+      - wordpress

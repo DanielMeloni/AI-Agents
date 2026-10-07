@@ -1,0 +1,8 @@
+{
+  "name": "@daniel-ai-os/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@daniel-ai-os/contracts": "workspace:*", "yaml": "^2.7.0" }
+}
