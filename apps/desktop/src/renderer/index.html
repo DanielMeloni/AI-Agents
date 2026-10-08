@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLACKSTAR Desktop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app">
+    <button id="mascot-btn" type="button" aria-expanded="false" aria-controls="panel" aria-label="BLACKSTAR: apri la conversazione">
+      <span id="mascot" class="mascot" data-state="idle" aria-hidden="true">
+        <span class="ring ring-orbit"></span>
+        <span class="ring ring-wave"></span>
+        <span class="ring ring-wave ring-wave-2"></span>
+        <img class="mascot-img" src="assets/blackstar.webp" alt="" width="640" height="640" draggable="false" />
+      </span>
+      <span id="mascot-label" class="mascot-label">BLACKSTAR</span>
+    </button>
+
+    <section id="panel" hidden aria-label="Conversazione con BLACKSTAR">
+      <div id="log" role="log" aria-live="polite"></div>
+      <form id="form" autocomplete="off">
+        <label class="sr-only" for="input">Richiesta per BLACKSTAR</label>
+        <textarea id="input" rows="2" maxlength="2000" placeholder="Scrivi una richiesta editoriale…"></textarea>
+        <div class="row">
+          <button type="button" id="demo" class="ghost">Richiesta demo</button>
+          <button type="submit" id="send">Invia</button>
+        </div>
+        <p class="note">Modalità locale (dry-run): nessuna pubblicazione né azione esterna.</p>
+      </form>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

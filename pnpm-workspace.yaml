@@ -2,3 +2,8 @@ packages:
   - "packages/*"
   - "agents/*"
   - "apps/*"
+
+# rollup 4.64.1+ è più recente della minimum release age del progetto (le sue 25 varianti di
+# piattaforma @rollup/* non risolvono). 4.64.0 è matura; rimuovere l'override quando 4.64.2+ lo sarà.
+overrides:
+  rollup: 4.64.0

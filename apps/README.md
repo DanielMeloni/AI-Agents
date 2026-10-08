@@ -8,4 +8,4 @@ Possibili applicazioni future:
 - `api`: endpoint per routing e autorizzazioni;
 - `worker`: esecuzioni pianificate e code.
 
-Stato MVP: esiste solo `cli` (demo locale in dry-run, nessuna logica agent-specifica oltre al wiring). `web`, `api` e `worker` restano da creare dopo la validazione del pilot.
+Stato MVP: esistono `cli` (demo locale in dry-run) e `desktop` (BLACKSTAR Desktop, Electron). Entrambe contengono solo wiring, nessuna logica agent-specifica. Non sono previsti `web` né `api`; `worker` resta da valutare dopo il pilot.

@@ -71,4 +71,27 @@ Note di design:
 - Il router è generico: legge `routing.keywords` (campo opzionale) da `agents/<id>/agent.yaml`; un `*` finale indica un prefisso (`articol*`).
 - Il codice dei pacchetti è consumato direttamente come TypeScript (nessuno step di build) tramite `tsx` e `vitest`.
 
+## BLACKSTAR Desktop (Windows, locale)
+
+App desktop Electron + TypeScript in `apps/desktop`: una finestra nativa con la mascotte BLACKSTAR. Il click apre/chiude la conversazione, che invia le richieste al runtime DAP locale. Nessun server HTTP, nessuna app web, nessuna rete.
+
+Requisiti: Windows 10/11, Node.js ≥ 22.12, pnpm ≥ 10. Al **primo avvio** Electron scarica il proprio binario (serve una connessione una tantum; poi l'app funziona offline).
+
+```bash
+pnpm install
+pnpm desktop:dev     # compila (esbuild) e apre la finestra
+pnpm test            # include i test dell'app desktop
+```
+
+Uso: clicca la mascotte, premi «Richiesta demo» (oppure scrivi) e invia. Il risultato mostra stato, summary, proposta, outline e azioni richieste. Se una richiesta è bloccata compare il pulsante «Conferma …»: la conferma vale solo per quella richiesta.
+
+Struttura e sicurezza:
+
+- Il processo main importa direttamente `@daniel-ai-os/{contracts,runtime,blackstar}`; la UI (renderer) non ha accesso a filesystem, YAML, Node.js o Electron.
+- Il preload espone una sola API: `window.blackstar.chat(message, options)` → un solo canale IPC (`blackstar:chat`). Payload e risposta sono validati con zod su entrambi i lati del main; il mittente deve essere la pagina locale.
+- `contextIsolation: true`, `nodeIntegration: false`, `sandbox: true`; permessi del browser negati, navigazione e nuove finestre bloccate, richieste http(s)/ws annullate, CSP restrittiva.
+- Mascotte: immagine locale `apps/desktop/src/renderer/assets/blackstar.webp` (nessuna risorsa esterna) animata via CSS negli stati `idle` (respiro), `listening` (si illumina), `working` (anello orbitale), `responding` (pulsa a ritmo di "voce" con onde sonore, per un tempo proporzionale alla risposta) e `blocked` (tinta rossa e scossa). Con `prefers-reduced-motion` le animazioni sono disattivate.
+
+Limiti dell'MVP: sempre dry-run (anche con conferma non viene eseguita alcuna azione: nessun connettore, WordPress, Drive, database o LLM); nessuna persistenza della conversazione; nessun installer/pacchetto (si avvia dal repository con `pnpm desktop:dev`); la proposta editoriale viene da un template locale; il repository deve restare sul disco perché i manifest YAML sono letti da `agents/`.
+
 Vedi [architettura](docs/architecture.md), [DAP](docs/dap.md), [BLACKSTAR](agents/blackstar/README.md) e [roadmap](docs/roadmap.md).

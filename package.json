@@ -8,7 +8,8 @@
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "demo": "tsx apps/cli/src/main.ts"
+    "demo": "tsx apps/cli/src/main.ts",
+    "desktop:dev": "pnpm --filter @daniel-ai-os/desktop dev"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
